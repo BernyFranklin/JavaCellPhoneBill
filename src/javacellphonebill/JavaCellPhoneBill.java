@@ -46,7 +46,7 @@ public class JavaCellPhoneBill {
     private static final int BILL = 4;   // 4 - Amount billed
     
     // Defining ACCOUNTS array
-    private static string [ ] [ ] ACCOUNTS = {
+    private static String [ ] [ ] ACCOUNTS = {
         // 0 - Account, 1 - Name, 2 - Plan, 3 - Used, 4 - Bill
         {"323998-9", "Dan McElroy",    "Plan-A", "0.0", "0.0"},   // 0
         {"264442-8", "Manuel Estrada", "Plan-C", "0.0", "0.0"},   // 1
