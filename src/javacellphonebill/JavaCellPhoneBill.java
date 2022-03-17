@@ -46,7 +46,7 @@ public class JavaCellPhoneBill {
     private static final int BILL = 4;   // 4 - Amount billed
     
     // Defining ACCOUNTS array
-    private static String [ ] [ ] ACCOUNTS = {
+    private static String [ ] [ ] Accounts = {
         // 0 - Account, 1 - Name, 2 - Plan, 3 - Used, 4 - Bill
         {"323998-9", "Dan McElroy",    "Plan-A", "0.0", "0.0"},   // 0
         {"264442-8", "Manuel Estrada", "Plan-C", "0.0", "0.0"},   // 1
@@ -78,21 +78,21 @@ public class JavaCellPhoneBill {
         Scanner stdin = new Scanner(System.in);
         
         // Print how many customer acounts
-        System.out.printf ("There are %d customers\n\n", ACCOUNTS.length);
+        System.out.printf ("There are %d customers\n\n", Accounts.length);
         
         // Prompt for input, ask for GB per account
         System.out.println ("Enter GB for: ");
         
         // Declare limit for loop
-        int numberOfCustomers = ACCOUNTS.length;
+        int numberOfCustomers = Accounts.length;
         // Start loop
         for (int customer = 0; customer < numberOfCustomers; customer++) {
             System.out.printf ("%-15.15s %s %s: ",
-                    ACCOUNTS[customer][NAME],
-                    ACCOUNTS[customer][ACCT],
-                    ACCOUNTS[customer][PLAN]);
+                    Accounts[customer][NAME],
+                    Accounts[customer][ACCT],
+                    Accounts[customer][PLAN]);
             // Input GB used
-            ACCOUNTS[customer][USED] = stdin.nextLine();
+            Accounts[customer][USED] = stdin.nextLine();
         }   // End of for loop
     }   // End of inputGBused
     
@@ -105,19 +105,19 @@ public class JavaCellPhoneBill {
         // Flag assumes no errors
         boolean errorFlag = false;
         // Number of customers derived from ACCOUNTS array length
-        int numberOfCustomers = ACCOUNTS.length;
+        int numberOfCustomers = Accounts.length;
         
         // Let's try some testing
         try {
             // Loop through each customer
             for (int customer = 0; customer < numberOfCustomers; customer++) {
                 // Get amount used from array  as string and convert to double
-                GBused = Double.valueOf(ACCOUNTS[customer][USED]);
+                GBused = Double.valueOf(Accounts[customer][USED]);
                 
                 
                 // Compute bill based on customer's plan
                 // bill set to switch statement
-                bill = switch (ACCOUNTS[customer][PLAN]) {
+                bill = switch (Accounts[customer][PLAN]) {
                     // Plan A
                     case "Plan-A" -> computeBill(GBused, PLAN_TIERS[PLAN_A][LIMIT],
                             PLAN_TIERS[PLAN_A][PRICE]);
@@ -135,9 +135,9 @@ public class JavaCellPhoneBill {
                 }; 
                 
                 // Convert bill from double back to string
-                ACCOUNTS[customer][BILL] = String.valueOf(bill);
+                Accounts[customer][BILL] = String.valueOf(bill);
             }   // End of for loop
-        }   // End of Try
+        }   // End of Try   // End of Try   // End of Try   // End of Try
         catch (NumberFormatException e) {
             // If input isn't numeric
             System.out.println ("Values for GB must be numeric");
@@ -177,17 +177,17 @@ public class JavaCellPhoneBill {
         System.out.printf ("\n\n============= Customer Billing =================\n");
         
         // Define limit for loop
-        int numberOfCustomers = ACCOUNTS.length;
+        int numberOfCustomers = Accounts.length;
         // Start loop for display
         for (int customer = 0; customer < numberOfCustomers; customer++) {
             System.out.printf ("%-15s %s %s\n",
-                    ACCOUNTS[customer][NAME],
-                    ACCOUNTS[customer][ACCT],
-                    ACCOUNTS[customer][PLAN]
+                    Accounts[customer][NAME],
+                    Accounts[customer][ACCT],
+                    Accounts[customer][PLAN]
             );
             System.out.printf ("  %.1f GB used, bill=%6.2f\n\n",
-                    Double.valueOf(ACCOUNTS[customer][USED]),
-                    Double.valueOf(ACCOUNTS[customer][BILL])
+                    Double.valueOf(Accounts[customer][USED]),
+                    Double.valueOf(Accounts[customer][BILL])
             );
         }   // End of for loop
     }   // End of printBilling
