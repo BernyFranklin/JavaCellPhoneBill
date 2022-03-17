@@ -61,7 +61,32 @@ public class JavaCellPhoneBill {
     
     // Start Main
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Define Local Error flag
+        boolean error;
+        inputGBused();   // Call method to input GB used and place into array
     }   // End of PSV Main
     
+    // Start inputGBused
+    private static void inputGBused() {
+        // Create Scanner object
+        Scanner stdin = new Scanner(System.in);
+        
+        // Print how many customer acounts
+        System.out.printf ("There are %d customers\n\n", ACCOUNTS.length);
+        
+        // Prompt for input, ask for GB per account
+        System.out.println ("Enter GB for: ");
+        
+        // Declare limit for loop
+        int numberOfCustomers = ACCOUNTS.length;
+        // Start loop
+        for (int customer = 0; customer < numberOfCustomers; customer++) {
+            System.out.printf ("%15.15s %s %s: ",
+                    ACCOUNTS[customer][NAME],
+                    ACCOUNTS[customer][ACCT],
+                    ACCOUNTS[customer][PLAN]);
+            // Input GB used
+            ACCOUNTS[customer][USED] = stdin.nextLine();
+        }   // End of for loop
+    }   // End of inputGBused
 }   // End of JavaCellPhoneBill
