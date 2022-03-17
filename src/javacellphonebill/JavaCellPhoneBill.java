@@ -63,7 +63,10 @@ public class JavaCellPhoneBill {
     public static void main(String[] args) {
         // Define Local Error flag
         boolean error;
-        inputGBused();   // Call method to input GB used and place into array
+        // Call method to input GB used and place into array
+        inputGBused();   
+        // Bill each customer and return error flag 
+        error = billEachCustomer();
     }   // End of PSV Main
     
     // Start inputGBused
@@ -81,7 +84,7 @@ public class JavaCellPhoneBill {
         int numberOfCustomers = ACCOUNTS.length;
         // Start loop
         for (int customer = 0; customer < numberOfCustomers; customer++) {
-            System.out.printf ("%15.15s %s %s: ",
+            System.out.printf ("%-15.15s %s %s: ",
                     ACCOUNTS[customer][NAME],
                     ACCOUNTS[customer][ACCT],
                     ACCOUNTS[customer][PLAN]);
@@ -89,4 +92,37 @@ public class JavaCellPhoneBill {
             ACCOUNTS[customer][USED] = stdin.nextLine();
         }   // End of for loop
     }   // End of inputGBused
+    
+    // Start billEachCustomer
+    private static boolean billEachCustomer() {
+        // GB used pulled from array
+        double GBused;
+        // bill
+        double bill;
+        // Flag assumes no errors
+        boolean errorFlag = false;
+        // Number of customers derived from ACCOUNTS array length
+        int numberOfCustomers = ACCOUNTS.length;
+        
+        // Let's try some testing
+        try {
+            // Loop through each customer
+            for (int customer = 0; customer < numberOfCustomers; customer++) {
+                // Get amount used from array  as string and convert to double
+                GBused = Double.valueOf(ACCOUNTS[customer][USED]);
+                
+                
+                // Compute bill based on customer's plan
+                // Plan A
+                if (ACCOUNTS[customer][PLAN].equals("Plan-A")) {
+                    bill = computeBill(GBused, PLAN_TIERS[PLAN_A][LIMIT], 
+                            PLAN_TIERS[PLAN_A][PRICE]);
+                }   // End of Plan A
+            }
+        }   // End of Try
+        catch (NumberFormatException e) {
+            // Code
+        }   // End of catch
+        return errorFlag;
+    }   // End of billEachCustomer
 }   // End of JavaCellPhoneBill
