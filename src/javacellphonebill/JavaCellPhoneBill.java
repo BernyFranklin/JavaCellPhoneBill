@@ -48,15 +48,18 @@ public class JavaCellPhoneBill {
     // Defining ACCOUNTS array
     private static String [ ] [ ] Accounts = {
         // 0 - Account, 1 - Name, 2 - Plan, 3 - Used, 4 - Bill
-        {"323998-9", "Dan McElroy",    "Plan-A", "0.0", "0.0"},   // 0
-        {"264442-8", "Manuel Estrada", "Plan-C", "0.0", "0.0"},   // 1
-        {"355591-3", "Charles Aitken", "Plan-B", "0.0", "0.0"},   // 2
-        {"100355-4", "Linh Nguyen",    "Plan-D", "0.0", "0.0"},   // 3
-        {"256052-9", "Alice Brown",    "Plan-D", "0.0", "0.0"},   // 4
-        {"726619-8", "Dave Ha",        "Plan-D", "0.0", "0.0"},   // 5
-        {"145767-3", "Rachel Bush",    "Plan-B", "0.0", "0.0"},   // 6
-        {"767372-3", "Jose Gonzales",  "Plan-A", "0.0", "0.0"},   // 7
-        {"531923-3", "Oscar Meyer",    "Plan-D", "0.0", "0.0"},   // 8
+        {"323998-9", "Dan McElroy",    "Plan-A", "0.0", "0.0"},   //  0
+        {"264442-8", "Manuel Estrada", "Plan-C", "0.0", "0.0"},   //  1
+        {"355591-3", "Charles Aitken", "Plan-B", "0.0", "0.0"},   //  2
+        {"100355-4", "Linh Nguyen",    "Plan-D", "0.0", "0.0"},   //  3
+        {"256052-9", "Alice Brown",    "Plan-D", "0.0", "0.0"},   //  4
+        {"726619-8", "Dave Ha",        "Plan-D", "0.0", "0.0"},   //  5
+        {"145767-3", "Rachel Bush",    "Plan-B", "0.0", "0.0"},   //  6
+        {"767372-3", "Jose Gonzales",  "Plan-A", "0.0", "0.0"},   //  7
+        {"531923-3", "Oscar Meyer",    "Plan-D", "0.0", "0.0"},   //  8
+        {"120517-4", "Anastazja Rose", "Plan-A", "0.0", "0.0"},   //  9
+        {"082789-2", "Frank Bernal",   "Plan-B", "0.0", "0.0"},   // 10
+        {"061190-1", "Shayla Zemrak",  "Plan-C", "0.0", "0.0"},   // 11
     };   // End of ACCOUNTS array
     
     // Start Main
