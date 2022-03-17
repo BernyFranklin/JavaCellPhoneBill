@@ -116,34 +116,23 @@ public class JavaCellPhoneBill {
                 
                 
                 // Compute bill based on customer's plan
-                // Plan A
-                if (ACCOUNTS[customer][PLAN].equals("Plan-A")) {
-                    bill = computeBill(GBused, PLAN_TIERS[PLAN_A][LIMIT], 
+                // bill set to switch statement
+                bill = switch (ACCOUNTS[customer][PLAN]) {
+                    // Plan A
+                    case "Plan-A" -> computeBill(GBused, PLAN_TIERS[PLAN_A][LIMIT],
                             PLAN_TIERS[PLAN_A][PRICE]);
-                }   // End of Plan A
-                
-                // Plan B
-                else if (ACCOUNTS[customer][PLAN].equals("Plan-B")) {
-                    bill = computeBill(GBused, PLAN_TIERS[PLAN_B][LIMIT], 
+                    // Plan B
+                    case "Plan-B" -> computeBill(GBused, PLAN_TIERS[PLAN_B][LIMIT],
                             PLAN_TIERS[PLAN_B][PRICE]);
-                }   // End of Plan B
-                
-                // Plan C
-                else if (ACCOUNTS[customer][PLAN].equals("Plan-C")) {
-                    bill = computeBill(GBused, PLAN_TIERS[PLAN_C][LIMIT], 
+                    // Plan C
+                    case "Plan-C" -> computeBill(GBused, PLAN_TIERS[PLAN_C][LIMIT],
                             PLAN_TIERS[PLAN_C][PRICE]);
-                }   // End of Plan C
-                
-                // Plan D
-                else if (ACCOUNTS[customer][PLAN].equals("Plan-D")) {
-                    bill = computeBill(GBused, PLAN_TIERS[PLAN_D][LIMIT], 
+                    // Plan D
+                    case "Plan-D" -> computeBill(GBused, PLAN_TIERS[PLAN_D][LIMIT],
                             PLAN_TIERS[PLAN_D][PRICE]);
-                }   // End of Plan D
-                
-                // Plan doesn't exist gets zero
-                else {
-                    bill = 0.00;
-                }  // End of "phony" plan
+                    // "Phony" plan set 0.00
+                    default -> 0.00;
+                }; 
                 
                 // Convert bill from double back to string
                 ACCOUNTS[customer][BILL] = String.valueOf(bill);
@@ -191,7 +180,7 @@ public class JavaCellPhoneBill {
         int numberOfCustomers = ACCOUNTS.length;
         // Start loop for display
         for (int customer = 0; customer < numberOfCustomers; customer++) {
-            System.out.printf ("%s %s %s\n",
+            System.out.printf ("%-15s %s %s\n",
                     ACCOUNTS[customer][NAME],
                     ACCOUNTS[customer][ACCT],
                     ACCOUNTS[customer][PLAN]
