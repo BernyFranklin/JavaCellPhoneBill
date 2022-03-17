@@ -47,7 +47,7 @@ public class JavaCellPhoneBill {
     
     // Defining ACCOUNTS array
     private static String [ ] [ ] Accounts = {
-        // 0 - Account, 1 - Name, 2 - Plan, 3 - Used, 4 - Bill
+        // 0 - ACCT, 1 - NAME,       2 - PLAN, 3 - Used, 4 - Bill
         {"323998-9", "Dan McElroy",    "Plan-A", "0.0", "0.0"},   //  0
         {"264442-8", "Manuel Estrada", "Plan-C", "0.0", "0.0"},   //  1
         {"355591-3", "Charles Aitken", "Plan-B", "0.0", "0.0"},   //  2
@@ -59,7 +59,7 @@ public class JavaCellPhoneBill {
         {"531923-3", "Oscar Meyer",    "Plan-D", "0.0", "0.0"},   //  8
         {"120517-4", "Anastazja Rose", "Plan-A", "0.0", "0.0"},   //  9
         {"082789-2", "Frank Bernal",   "Plan-B", "0.0", "0.0"},   // 10
-        {"061190-1", "Shayla Zemrak",  "Plan-C", "0.0", "0.0"},   // 11
+        {"061190-1", "Shayla Webbs",   "Plan-C", "0.0", "0.0"},   // 11
     };   // End of ACCOUNTS array
     
     // Start Main
@@ -86,17 +86,41 @@ public class JavaCellPhoneBill {
         // Prompt for input, ask for GB per account
         System.out.println ("Enter GB for: ");
         
+        // Declare counter for loop
+        int customer = 0;
         // Declare limit for loop
         int numberOfCustomers = Accounts.length;
+        // Declare flag for loop
+        boolean isNumeric;
+        
         // Start loop
-        for (int customer = 0; customer < numberOfCustomers; customer++) {
+        do {
             System.out.printf ("%-15.15s %s %s: ",
                     Accounts[customer][NAME],
                     Accounts[customer][ACCT],
                     Accounts[customer][PLAN]);
             // Input GB used
             Accounts[customer][USED] = stdin.nextLine();
-        }   // End of for loop
+            // Send input to errorHandler and return bool
+            isNumeric = errorHandler(Accounts[customer][USED]);
+            
+            // If not numeric print error and try again
+            if (!isNumeric) {
+                System.out.println ("GB used must be positive numeric value");
+                System.out.printf ("Please try again...\n");
+            }
+            else
+                customer++;
+        } while (customer < numberOfCustomers);
+        
+//        for (int customer = 0; customer < numberOfCustomers; customer++) {
+//            System.out.printf ("%-15.15s %s %s: ",
+//                    Accounts[customer][NAME],
+//                    Accounts[customer][ACCT],
+//                    Accounts[customer][PLAN]);
+//            // Input GB used
+//            Accounts[customer][USED] = stdin.nextLine();
+//        }   // End of for loop
     }   // End of inputGBused
     
     // Start billEachCustomer
@@ -194,4 +218,22 @@ public class JavaCellPhoneBill {
             );
         }   // End of for loop
     }   // End of printBilling
+    
+    // Start errorHandler
+    private static boolean errorHandler(String input) {
+        // Assume input is numeric
+        boolean isValid = true;
+        // Double variable for try
+        double inputTest;
+        // Check if numeric
+        try {
+            inputTest = Double.valueOf(input);
+            if (inputTest <0)
+                isValid = false;
+        } catch (NumberFormatException e) {
+            // Set flag for error present
+            isValid = false;
+        }   // End of catch   // End of catch
+        return isValid;
+    }   // End errorHandler
 }   // End of JavaCellPhoneBill
