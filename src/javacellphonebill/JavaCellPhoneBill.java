@@ -118,11 +118,62 @@ public class JavaCellPhoneBill {
                     bill = computeBill(GBused, PLAN_TIERS[PLAN_A][LIMIT], 
                             PLAN_TIERS[PLAN_A][PRICE]);
                 }   // End of Plan A
-            }
+                
+                // Plan B
+                else if (ACCOUNTS[customer][PLAN].equals("Plan-B")) {
+                    bill = computeBill(GBused, PLAN_TIERS[PLAN_B][LIMIT], 
+                            PLAN_TIERS[PLAN_B][PRICE]);
+                }   // End of Plan B
+                
+                // Plan C
+                else if (ACCOUNTS[customer][PLAN].equals("Plan-C")) {
+                    bill = computeBill(GBused, PLAN_TIERS[PLAN_C][LIMIT], 
+                            PLAN_TIERS[PLAN_C][PRICE]);
+                }   // End of Plan C
+                
+                // Plan D
+                else if (ACCOUNTS[customer][PLAN].equals("Plan-D")) {
+                    bill = computeBill(GBused, PLAN_TIERS[PLAN_D][LIMIT], 
+                            PLAN_TIERS[PLAN_D][PRICE]);
+                }   // End of Plan D
+                
+                // Plan doesn't exist gets zero
+                else {
+                    bill = 0.00;
+                }  // End of "phony" plan
+                
+                // Convert bill from double back to string
+                ACCOUNTS[customer][BILL] = String.valueOf(bill);
+            }   // End of for loop
         }   // End of Try
         catch (NumberFormatException e) {
-            // Code
+            // If input isn't numeric
+            System.out.println ("Values for GB must be numeric");
+            // Set flag for error present
+            errorFlag = true;
         }   // End of catch
         return errorFlag;
     }   // End of billEachCustomer
+    
+    // Start of computeBill
+    private static double computeBill(double used, double limit, double rate) {
+        // Overlimit var
+        double overLimit;
+        // Total of bill
+        double bill;
+        
+        // Is used over limit?
+        if (used <= limit) {
+            // If no
+            overLimit = 0;   
+        } else {
+            // If yes, seperate and round up
+            overLimit = Math.ceil(used - limit);   
+        }   // End of check
+        
+        // Bill is plans base rate + any charge for GB over limit
+        bill = rate + overLimit * OVER_LIMIT_CHARGE;
+        // Pass value of bill to whoever called
+        return bill;
+    }   // End of computeBill
 }   // End of JavaCellPhoneBill
