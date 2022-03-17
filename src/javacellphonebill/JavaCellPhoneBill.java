@@ -67,6 +67,9 @@ public class JavaCellPhoneBill {
         inputGBused();   
         // Bill each customer and return error flag 
         error = billEachCustomer();
+        // Don't print bill if error
+        if (!error)
+            printBilling();
     }   // End of PSV Main
     
     // Start inputGBused
@@ -176,4 +179,27 @@ public class JavaCellPhoneBill {
         // Pass value of bill to whoever called
         return bill;
     }   // End of computeBill
+    
+    // Start printBilling
+    private static void printBilling() {
+        // Display each customer bill using 2 lines with 1 digit
+        //   past the decimal for GB used and 2 digits pas the 
+        //   decimal for the total billed for all customers
+        System.out.printf ("\n\n============= Customer Billing =================\n");
+        
+        // Define limit for loop
+        int numberOfCustomers = ACCOUNTS.length;
+        // Start loop for display
+        for (int customer = 0; customer < numberOfCustomers; customer++) {
+            System.out.printf ("%s %s %s\n",
+                    ACCOUNTS[customer][NAME],
+                    ACCOUNTS[customer][ACCT],
+                    ACCOUNTS[customer][PLAN]
+            );
+            System.out.printf ("  %.1f GB used, bill=%6.2f\n\n",
+                    Double.valueOf(ACCOUNTS[customer][USED]),
+                    Double.valueOf(ACCOUNTS[customer][BILL])
+            );
+        }   // End of for loop
+    }   // End of printBilling
 }   // End of JavaCellPhoneBill
