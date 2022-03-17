@@ -2,8 +2,8 @@
  * JavaCellPhoneBill Version1.0
  * Frank Bernal
  * CIS 084 Java Programming
- * Input
- * Output
+ * Input: GB Used
+ * Output: Bill
  * 17 Mar 2022
  */
 
@@ -112,15 +112,7 @@ public class JavaCellPhoneBill {
             else
                 customer++;
         } while (customer < numberOfCustomers);
-        
-//        for (int customer = 0; customer < numberOfCustomers; customer++) {
-//            System.out.printf ("%-15.15s %s %s: ",
-//                    Accounts[customer][NAME],
-//                    Accounts[customer][ACCT],
-//                    Accounts[customer][PLAN]);
-//            // Input GB used
-//            Accounts[customer][USED] = stdin.nextLine();
-//        }   // End of for loop
+        // End of Do..While
     }   // End of inputGBused
     
     // Start billEachCustomer
@@ -133,44 +125,35 @@ public class JavaCellPhoneBill {
         boolean errorFlag = false;
         // Number of customers derived from ACCOUNTS array length
         int numberOfCustomers = Accounts.length;
-        
-        // Let's try some testing
-        try {
-            // Loop through each customer
-            for (int customer = 0; customer < numberOfCustomers; customer++) {
-                // Get amount used from array  as string and convert to double
-                GBused = Double.valueOf(Accounts[customer][USED]);
-                
-                
-                // Compute bill based on customer's plan
-                // bill set to switch statement
-                bill = switch (Accounts[customer][PLAN]) {
-                    // Plan A
-                    case "Plan-A" -> computeBill(GBused, PLAN_TIERS[PLAN_A][LIMIT],
-                            PLAN_TIERS[PLAN_A][PRICE]);
-                    // Plan B
-                    case "Plan-B" -> computeBill(GBused, PLAN_TIERS[PLAN_B][LIMIT],
-                            PLAN_TIERS[PLAN_B][PRICE]);
-                    // Plan C
-                    case "Plan-C" -> computeBill(GBused, PLAN_TIERS[PLAN_C][LIMIT],
-                            PLAN_TIERS[PLAN_C][PRICE]);
-                    // Plan D
-                    case "Plan-D" -> computeBill(GBused, PLAN_TIERS[PLAN_D][LIMIT],
-                            PLAN_TIERS[PLAN_D][PRICE]);
-                    // "Phony" plan set 0.00
-                    default -> 0.00;
-                }; 
-                
-                // Convert bill from double back to string
-                Accounts[customer][BILL] = String.valueOf(bill);
-            }   // End of for loop
-        }   // End of Try   // End of Try   // End of Try   // End of Try
-        catch (NumberFormatException e) {
-            // If input isn't numeric
-            System.out.println ("Values for GB must be numeric");
-            // Set flag for error present
-            errorFlag = true;
-        }   // End of catch
+
+        // Loop through each customer
+        for (int customer = 0; customer < numberOfCustomers; customer++) {
+            // Get amount used from array  as string and convert to double
+            GBused = Double.valueOf(Accounts[customer][USED]);
+
+
+            // Compute bill based on customer's plan
+            // bill set to switch statement
+            bill = switch (Accounts[customer][PLAN]) {
+                // Plan A
+                case "Plan-A" -> computeBill(GBused, PLAN_TIERS[PLAN_A][LIMIT],
+                        PLAN_TIERS[PLAN_A][PRICE]);
+                // Plan B
+                case "Plan-B" -> computeBill(GBused, PLAN_TIERS[PLAN_B][LIMIT],
+                        PLAN_TIERS[PLAN_B][PRICE]);
+                // Plan C
+                case "Plan-C" -> computeBill(GBused, PLAN_TIERS[PLAN_C][LIMIT],
+                        PLAN_TIERS[PLAN_C][PRICE]);
+                // Plan D
+                case "Plan-D" -> computeBill(GBused, PLAN_TIERS[PLAN_D][LIMIT],
+                        PLAN_TIERS[PLAN_D][PRICE]);
+                // "Phony" plan set 0.00
+                default -> 0.00;
+            }; 
+
+            // Convert bill from double back to string
+            Accounts[customer][BILL] = String.valueOf(bill);
+        }   // End of for loop
         return errorFlag;
     }   // End of billEachCustomer
     
@@ -212,7 +195,7 @@ public class JavaCellPhoneBill {
                     Accounts[customer][ACCT],
                     Accounts[customer][PLAN]
             );
-            System.out.printf ("  %.1f GB used, bill=%6.2f\n\n",
+            System.out.printf ("  %.1f GB used, bill= $%7.2f\n\n",
                     Double.valueOf(Accounts[customer][USED]),
                     Double.valueOf(Accounts[customer][BILL])
             );
